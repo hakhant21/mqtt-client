@@ -1,0 +1,50 @@
+{
+    "name": "hakhant/laravel-mqtt",
+    "description": "An MQTT client written in and for PHP.",
+    "authors": [
+        {
+            "name": "Htet Aung Khant",
+            "email": "hakhant21@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "version": "1.0.0",
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php-mqtt/client": "^2.1",
+        "illuminate/support": "^11.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6",
+        "orchestra/testbench": "^9.5",
+        "pestphp/pest": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hakhant\\Broker\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hakhant\\Broker\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hakhant\\Broker\\Providers\\ClientServiceProvider"
+            ]
+        }
+    }
+}

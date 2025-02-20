@@ -7,11 +7,6 @@ use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Hakhant\Broker\Contracts\ClientInterface;
 
 beforeEach(function () {
-
-    $client = new Client(config('mqtt'));
-
-    dd($client);
-
     // Create a mock for the MqttClient
     $this->mqttClientMock = Mockery::mock(MqttClient::class);
     
@@ -52,16 +47,13 @@ it('publishes a message correctly', function () {
 
 it('subscribes to a topic correctly', function () {
     $topic = 'test/topic';
-    $callback = function ($topic, $message) {
-        return 'Received';
-    };
     
     $this->mqttClientMock
         ->shouldReceive('subscribe')
         ->once()
-        ->with($topic, $callback, 0);
+        ->with($topic, Mockery::any());
     
-    $this->client->subscribe($topic, $callback);
+    $this->client->subscribe($topic);
 });
 
 it('disconnects from the MQTT broker', function () {

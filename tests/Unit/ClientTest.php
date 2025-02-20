@@ -7,6 +7,11 @@ use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Hakhant\Broker\Contracts\ClientInterface;
 
 beforeEach(function () {
+
+    $client = new Client(config('mqtt'));
+
+    dd($client);
+
     // Create a mock for the MqttClient
     $this->mqttClientMock = Mockery::mock(MqttClient::class);
     

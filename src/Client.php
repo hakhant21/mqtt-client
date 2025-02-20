@@ -42,7 +42,9 @@ class Client implements ClientInterface
     public function subscribe(string $topic, callable $callback = null, int $qos = 0)
     {
         try {
-            $this->mqtt->subscribe($topic, $callback, $qos);
+            $this->mqtt->subscribe($topic, function($topic, $message) use($callback) {
+                $callback($topic, $message);
+            });
         } catch (ClientException $e) {
             echo $e->getMessage();
         }

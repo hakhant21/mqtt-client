@@ -33,7 +33,7 @@ class ClientServiceProvider extends ServiceProvider
 
         // Register the main class to use with the facade
         $this->app->singleton(ClientInterface::class, function () {
-            $configs = config('mqtt');
+            $configs = config('mqtt.default');
 
             return new Client($configs);
         });

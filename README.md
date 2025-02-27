@@ -86,9 +86,7 @@ class MqttController extends Controller
         });
 
         // Keep the loop running to listen for messages
-        while (true) {
-            $this->mqttClient->loop();
-        }
+        $this->mqttClient->loop()
     }
 }
 

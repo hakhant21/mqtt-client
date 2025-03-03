@@ -17,8 +17,10 @@ class ClientServiceProvider extends ServiceProvider
                 __DIR__.'/../../config/mqtt.php' => config_path('mqtt.php'),
             ], 'mqtt');
 
-            $this->info('Please run "php artisan vendor:publish --provider="Hakhant\Broker\Providers\ClientServiceProvider" --tag="mqtt" to create a config/mqtt.php file.');
+            $this->info("Please run 'php artisan vendor:publish --tag=config' to publish the configuration file.");
         }
+
+
     }
 
     /**

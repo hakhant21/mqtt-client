@@ -17,11 +17,6 @@ class ClientServiceProvider extends ServiceProvider
                 __DIR__.'/../../config/mqtt.php' => config_path('mqtt.php'),
             ], 'mqtt');
         }
-
-        Artisan::call('vendor:publish', [
-            '--provider' => 'Hakhant\Broker\Providers\ClientServiceProvider',
-            '--tag' => 'mqtt',
-        ]);
     }
 
     /**

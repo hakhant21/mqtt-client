@@ -13,10 +13,11 @@ class Client implements ClientInterface
     private ConnectionSettings $settings;
     public function __construct(array $configs)
     {
-        $this->mqtt = new MqttClient($configs['host'], $configs['port'], $configs['client_id']);
+        $this->mqtt = new MqttClient($configs['host'], $configs['port'], $configs['client_id'].'-'.uniqid());
         $this->settings = (new ConnectionSettings())
                         ->setUsername($configs['username'])
-                        ->setPassword($configs['password']);
+                        ->setPassword($configs['password'])
+                        ->setKeepAliveInterval($configs['keep_alive']);
 
         $this->connect();
     }
@@ -44,7 +45,7 @@ class Client implements ClientInterface
         try {
             $this->mqtt->subscribe($topic, function($topic, $message) use($callback) {
                 $callback($topic, $message);
-            });
+            }, $qos);
         } catch (ClientException $e) {
             echo $e->getMessage();
         }

@@ -12,14 +12,12 @@ class ClientServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            Artisan::command('install:broadcasting', function () {
-                $this->call('vendor:publish', ['--tag' => 'reverb']);
-            });
             // Publishing the configuration file.
-
             $this->publishes([
                 __DIR__.'/../../config/mqtt.php' => config_path('mqtt.php'),
             ], 'mqtt');
+
+            $this->info('Please run "php artisan vendor:publish --provider="Hakhant\Broker\Providers\ClientServiceProvider" --tag="mqtt" to create a config/mqtt.php file.');
         }
     }
 

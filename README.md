@@ -5,7 +5,6 @@ This is a simple Laravel wrapper for interacting with MQTT brokers using the `Ph
 ## Requirements
 
 - PHP 8.0 or higher
-- Composer (for managing dependencies)
 - PhpMqtt\Client library
 
 ## Installation
